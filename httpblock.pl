@@ -57,7 +57,7 @@ foreach my $ip (keys %deny) {
 		my $response = "IGNORED";
 
 		if ($hostCount >= $cfg{'trigger'}{'minHosts'} || $attackCount >= $cfg{'trigger'}{'minAttacks'}) {
-			##`$fwCmd`;
+			`$fwCmd`;
 			$response = "BANNED";
 		}
 
