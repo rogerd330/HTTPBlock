@@ -1,0 +1,25 @@
+HTTPBlock - the poorman's web intrusion detection system.
+
+ABOUT
+Web crackers/scanners/bots/etc are constantly scanning the Internet for web application vulnerabilities. They scan for common footprints most of the time if it's a known exploit.
+This system watches your Apache logs for traces of those footprints and denies access to your server from any unauthorized clients.
+
+SETUP
+1. Create your IPTABLES
+'iptables -N HTTPD' 
+The chain name HTTPD is hard coded in the scanner.
+
+2. Customize your 'allow' file.
+Specify any IP addresses of known clients that you don't want banned, like yourself, your servers IPs, perhaps a trusted 3rd party vulnerability scanner. This will prevent any false
+negatives.
+
+3. Customize your 'footprints' file.
+You know your server and expected traffic better than me. Add framents of known exploit URLs for the scanner to keep an eye out for and ban any clients not specifically allowed.
+
+4. Schedule the scanner.
+Create the cronjob under someone who has read access to the Apache logs.
+*/15 * * * * /path/to/httpblock.pl >>/save/a/log/somewhere/httpdblock.log
+
+LICENSE
+HTTPBlock is released under the MIT license:
+http://opensource.org/licenses/MIT

@@ -1,0 +1,6 @@
+%CFG = (
+	'trigger' => {
+		'minHosts' => 2,
+		'minAttacks' => 5,
+	},
+);

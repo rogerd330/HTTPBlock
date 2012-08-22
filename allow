@@ -1,0 +1,4 @@
+#single host
+192.168.1.1 
+#class-c range
+192.168.2.\d+
