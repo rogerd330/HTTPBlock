@@ -1,5 +1,7 @@
 #!/usr/bin/perl -w
 
+use Cwd 'abs_path';
+use File::Basename;
 use Getopt::Std;
 use Date::Simple;
 
@@ -7,6 +9,8 @@ my $options = ();
 getopts("v", \%options);
 
 &_verbose("Starting...");
+
+chdir dirname(abs_path($0));
 
 my %cfg = do('settings');
 my @allowed = &_read_list('allow');
