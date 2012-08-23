@@ -90,26 +90,15 @@ sub _alreadyDenied($) {
 
 sub _timestamp {
         my $date = Date::Simple->new;
-
-        my $mo = $date->month;
-        $mo = "0" . $mo if length($mo) == 1;
-        my $dy = $date->day;
-        $dy = "0" . $dy if length($dy) == 1;
-
         my ($hr,$mn,$sc) = (localtime)[2,1,0];
-
-        $hr = "0" . $hr if length($hr) == 1;
-        $mn = "0" . $mn if length($mn) == 1;
-	$sc = "0" . $sc if length($sc) == 1;
-
-        return ($date->year, $mo, $dy, $hr, $mn, $sc);
+        return ($date->year, $date->month, $date->day, $hr, $mn, $sc);
 }
 
 sub _scan_log($) {
 	my ($msg) = @_;
 	my @ts = &_timestamp();
-	my $date = sprintf("%d/%d/%d", $ts[1], $ts[2], $ts[0]);
-	my $time = sprintf("%d:%d:%d", $ts[3], $ts[4], $ts[5]);
+	my $date = sprintf("%02d/%02d/%d", $ts[1], $ts[2], $ts[0]);
+	my $time = sprintf("%02d:%02d:%02d", $ts[3], $ts[4], $ts[5]);
 	print "$date - $time - $msg\n";
 }
 
